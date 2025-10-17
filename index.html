@@ -230,7 +230,7 @@
                         else {
                             ytPlayer.playVideo();
                             ytPlayer.unMute && ytPlayer.unMute();
-                            ytPlayer.setVolume && ytPlayer.setVolume(75);
+                            ytPlayer.setVolume && ytPlayer.setVolume(45);
                         }
                     }
                 } else if (audio) {
@@ -284,11 +284,11 @@
             try {
                 if (ytId && ytPlayer && ytReady) {
                     ytPlayer.unMute && ytPlayer.unMute();
-                    ytPlayer.setVolume && ytPlayer.setVolume(75);
+                    ytPlayer.setVolume && ytPlayer.setVolume(45);
                 }
                 if (audio) {
                     audio.muted = false;
-                    audio.volume = 0.75;
+                    audio.volume = 0.5;
                 }
             } catch (_) { /* noop */
             }
