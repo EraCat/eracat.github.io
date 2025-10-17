@@ -315,7 +315,7 @@
             if (!sfxTemplate) return;
             try {
                 const n = sfxTemplate.cloneNode(true);
-                n.volume = 0.7;
+                n.volume = 0.5;
                 document.body.appendChild(n);
                 const p = n.play();
                 if (p && p.catch) p.catch(() => {
@@ -330,10 +330,9 @@
             if (e.button !== 0) return;            // только ЛКМ
             if (e.target.closest('a,button,input,textarea,select,label,.icon-btn,.btn')) return; // не мешаем UI
 
-            // SFX всегда по клику (жест пользователя гарантирован) — политика автоплея соблюдена
             playSfx();
 
-            if (prefersReduced) return;            // визуальные эффекты уважают настройку
+            if (prefersReduced) return;
 
             const x = e.clientX, y = e.clientY;
             // Случайное направление (0..360°) и длина болта
