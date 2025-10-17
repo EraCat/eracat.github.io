@@ -1,0 +1,189 @@
+    /* Базовая тема по умолчанию (имперская) */
+    :root {
+      --bg:#0a0a0c; --bg2:#0f0b0e;
+      --text:#F4F5F7; --muted:#D6C9C3;
+      --card:rgba(12,10,14,.58); --border:rgba(255,59,48,.18);
+      --accent1:#FF7A59; /* coral */
+      --accent2:#FF3B30; /* imperial red */
+      --accent3:#F9D976; /* warm highlight */
+      --radius:16px; --radius-lg:20px;
+      --shadow:0 10px 28px rgba(0,0,0,.34);
+      --ufo-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><ellipse cx='12' cy='14' rx='7' ry='3' fill='%238a7dff' fill-opacity='.35' stroke='%23e8ebff' stroke-width='1.2'/><circle cx='12' cy='9' r='3' fill='%2332d3ff' fill-opacity='.45' stroke='%23e8ebff' stroke-width='1.2'/><path d='M7 13a5 3 0 0 1 10 0' stroke='%23e8ebff' stroke-width='1.2' fill='none'/><path d='M9 19l-1 3M12 19v3M15 19l1 3' stroke='%23e8ebff' stroke-width='1.2'/></svg>") 12 12;
+    }
+    /* Альтернативная тема: Jedi (сталь/лазурь) */
+    body.theme-jedi{
+      --bg:#0a0f16; --bg2:#0b1220;
+      --text:#E6F6FF; --muted:#C2D6E6;
+      --card:rgba(9,14,22,.58); --border:rgba(96,165,250,.22);
+      --accent1:#60A5FA; /* blue */
+      --accent2:#22D3EE; /* cyan */
+      --accent3:#A7F3D0; /* mint highlight */
+      --shadow:0 10px 28px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{height:100%}
+    body{margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial; color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(138,125,255,.10), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(50,211,255,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0, var(--bg2) 100%);
+      min-height:100%}
+
+    /* Фон звёзд — очень мягкий, без навязчивой анимации */
+    .stars{position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.4; background:transparent url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 80 80%22%3E%3Ccircle cx=%221%22 cy=%221%22 r=%221%22 fill=%22white%22 opacity=%220.9%22/%3E%3Ccircle cx=%2225%22 cy=%2211%22 r=%220.8%22 fill=%22white%22 opacity=%220.65%22/%3E%3Ccircle cx=%2248%22 cy=%2230%22 r=%220.6%22 fill=%22white%22 opacity=%220.7%22/%3E%3Ccircle cx=%2260%22 cy=%2215%22 r=%220.7%22 fill=%22white%22 opacity=%220.6%22/%3E%3Ccircle cx=%2235%22 cy=%2255%22 r=%221%22 fill=%22white%22 opacity=%220.85%22/%3E%3Ccircle cx=%2215%22 cy=%2236%22 r=%220.5%22 fill=%22white%22 opacity=%220.7%22/%3E%3C/svg%3E') repeat; background-size:80px 80px;}
+
+    /* Макет: липкий сайдбар слева + контент справа */
+    .container{max-width:1200px; margin:0 auto; padding:20px;}
+    .layout{display:grid; grid-template-columns: 320px 1fr; gap:22px}
+    @media (max-width: 960px){ .layout{grid-template-columns: 1fr} }
+
+    /* Сайдбар */
+    .sidebar{position:sticky; top:18px; align-self:start; background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; box-shadow:var(--shadow); backdrop-filter: blur(8px); overflow:hidden; contain:layout paint; isolation:isolate}
+    .me{display:flex; gap:14px; align-items:center; min-width:0}
+    .avatar{flex:0 0 64px; min-width:64px; min-height:64px; width:64px; height:64px; border-radius:50%; background:
+            radial-gradient(120% 120% at 30% 30%, rgba(255,255,255,.5), rgba(255,255,255,.0) 60%),
+            linear-gradient(135deg, var(--accent2), var(--accent1));
+            border:1px solid rgba(255,255,255,.28); box-shadow:0 0 24px rgba(255,184,107,.25);
+            display:flex; align-items:center; justify-content:center; font-weight:900; color:#0b0e2a;
+            position:relative; overflow:hidden}
+        .avatar img{position:absolute; flex-shrink:0; inset:6px; width:calc(100% - 12px); height:calc(100% - 12px); max-width:none; max-height:none; object-fit:contain; object-position:center; filter:var(--avatar-filter, drop-shadow(0 0 8px rgba(255,184,107,.25)))}
+        /* убрал маску для SVG — используем обычный <img>, чтобы избежать нулевой ширины/высоты и проблем совместимости */
+        .avatar .initials{position:absolute; inset:0; display:flex; align-items:center; justify-content:center}
+        .avatar.fallback .initials{display:flex}
+        .avatar:not(.fallback) .initials{display:none}
+    .name{margin:0; font-size:20px; font-weight:900; letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .role{margin:2px 0 0; color:var(--muted); font-size:14px}
+
+    .actions{display:flex; gap:8px; margin:14px 0 0; flex-wrap:wrap}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:9px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text); text-decoration:none; font-weight:700; transition:transform .18s ease, box-shadow .18s ease}
+    .btn.primary{background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#0b0e2a; border-color:transparent}
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(255,59,48,.28)}
+
+
+
+
+
+
+
+
+    .contacts{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:7px 10px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.03)}
+
+    /* Контент */
+    main{background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:20px; box-shadow:var(--shadow); backdrop-filter: blur(8px)}
+    section{padding:10px 0 4px}
+    h2{margin:2px 0 10px; font-size:20px}
+
+    /* Таймлайн опыта */
+    .timeline{position:relative; margin-left:8px}
+    .timeline:before{content:""; position:absolute; left:0; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent2), var(--accent1)); opacity:.6}
+    .item{position:relative; margin:0 0 16px 18px; padding:12px 12px; border:1px solid var(--border); border-radius:12px; background:rgba(12,10,18,.44);}
+    .item:before{content:""; position:absolute; left:-18px; top:16px; width:10px; height:10px; border-radius:50%; background:linear-gradient(90deg,var(--accent2),var(--accent1)); box-shadow:0 0 10px rgba(255,59,48,.6)}
+    .meta{color:var(--muted); font-size:13px; margin:4px 0 8px}
+    .list{margin:0; padding-left:18px}
+    .list li{margin:6px 0}
+
+    /* Навыки */
+    .skills{display:flex; flex-wrap:wrap; gap:8px}
+    .badge{padding:7px 10px; border-radius:999px; border:1px dashed var(--border); background:rgba(255,59,48,.08)}
+    .badge.hot{background:linear-gradient(90deg,var(--accent2),var(--accent1)); border:1px solid transparent; color:#0b0e2a; font-weight:800}
+
+    /* Кнопка «наверх» */
+    .to-top{position:fixed; right:18px; bottom:18px; background:linear-gradient(90deg,var(--accent2),var(--accent1)); color:#0b0e2a; border:none; border-radius:12px; padding:10px 12px; font-weight:800; cursor:pointer; box-shadow:0 10px 24px rgba(255,59,48,.25); opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease}
+    .to-top.show{opacity:1; pointer-events:auto}
+    .to-top:hover{transform:translateY(-2px)}
+
+    footer{margin:22px 0; color:var(--muted); font-size:13px; text-align:center}
+
+    @media print{
+      body{background:#fff; color:#000}
+      .stars,.to-top{display:none}
+      .layout{display:block}
+      .sidebar, main{background:#fff; box-shadow:none; border-color:#ddd}
+      a{color:#000}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *, *::before, *::after{animation:none !important; transition:none !important}
+    }
+  /* Иконки контактов */
+    .icons{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; max-width:100%}
+    .icon-btn{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text); text-decoration:none; font-weight:700; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+    .icon-btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(255,59,48,.26); border-color:rgba(255,59,48,.5)}
+    .icon-btn svg{width:18px; height:18px; display:block}
+
+    /* Улучшенные навыки */
+    .skill-bars{display:grid; gap:10px; margin-bottom:12px}
+    .bar{position:relative; height:28px; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.03); overflow:hidden; padding:0 10px; display:flex; align-items:center; justify-content:space-between}
+    .bar::after{content:''; position:absolute; left:0; top:0; bottom:0; width:var(--val,0%); background:linear-gradient(90deg,var(--accent2),var(--accent1)); opacity:.35}
+    .bar span,.bar i{position:relative; z-index:1; font-size:12px}
+    .bar i{color:var(--muted)}
+
+    .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px}
+    .group{border:1px solid var(--border); border-radius:12px; padding:12px; background:rgba(255,255,255,.03)}
+    .group h3{margin:0 0 8px; font-size:14px; color:var(--muted)}
+    .tags{display:flex; flex-wrap:wrap; gap:8px}
+    .tag{padding:6px 9px; border-radius:999px; border:1px dashed var(--border); background:rgba(255,59,48,.06)}
+
+  /* Аудио-амбьент */
+    .audio{margin-top:14px}
+    .audio .small{color:var(--muted); font-size:12px; margin-top:6px}
+    .eq{display:inline-flex; gap:2px; margin-left:8px}
+    .eq i{width:3px; height:12px; background:currentColor; opacity:.7; display:block; transform-origin:center bottom; animation:eq 1.2s ease-in-out infinite; animation-play-state:paused}
+    .btn.playing .eq i{animation-play-state:running}
+    .eq i:nth-child(2){animation-delay:.1s}
+    .eq i:nth-child(3){animation-delay:.2s}
+    .eq i:nth-child(4){animation-delay:.3s}
+    @keyframes eq{0%,100%{transform:scaleY(.35)} 50%{transform:scaleY(1)}}
+
+  /* Курсор НЛО */
+    :root{
+      /*--ufo-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><ellipse cx='12' cy='14' rx='7' ry='3' fill='%238a7dff' fill-opacity='.35' stroke='%23e8ebff' stroke-width='1.2'/><circle cx='12' cy='9' r='3' fill='%2332d3ff' fill-opacity='.45' stroke='%23e8ebff' stroke-width='1.2'/><path d='M7 13a5 3 0 0 1 10 0' stroke='%23e8ebff' stroke-width='1.2' fill='none'/><path d='M9 19l-1 3M12 19v3M15 19l1 3' stroke='%23e8ebff' stroke-width='1.2'/></svg>") 12 12;*/
+      --ufo-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 24 24'><defs><filter id='g'><feGaussianBlur stdDeviation='0.5'/></filter></defs><g fill='none' stroke='%23000' stroke-opacity='.12'><rect x='2.5' y='10.5' width='11' height='4' rx='1.2' fill='%23e6f2ff'/><rect x='8.5' y='12' width='3.2' height='6' rx='0.9' fill='%23cbd5e1'/><rect x='5' y='9.5' width='5' height='1.8' rx='0.6' fill='%2360A5FA'/></g><circle cx='2.8' cy='12' r='1.1' fill='%23FF3B30' filter='url(%23g)'/><rect x='13.2' y='11.8' width='7.8' height='2.4' rx='1.2' fill='%23FF3B30'/></svg>") 4 12;
+    }
+    body{ cursor: var(--ufo-cursor), auto; }
+    a, button, .btn, .icon-btn{ cursor: var(--ufo-cursor), pointer; }
+    input, textarea{ cursor: text; }
+
+  /* Cantina (Star‑Wars vibe) background */
+    .stars{display:none}
+    .cantina{position:fixed; inset:0; z-index:-1; pointer-events:none;
+      /* Тёмный градиент поверх картинки для читаемости текста */
+      background-image:
+        linear-gradient(180deg, rgba(10,11,23,.60) 0%, rgba(11,14,42,.45) 50%, rgba(20,18,28,.55) 100%),
+        url('background.png');
+      background-repeat:no-repeat,no-repeat;
+      background-position:center center, center center;
+      background-size:100% 100%, cover;
+      background-attachment:scroll, scroll;
+      filter:saturate(1.02);
+    }
+    .cantina::after{content:""; position:fixed; inset:0; pointer-events:none; z-index:-1;
+      background:
+        radial-gradient(200px 80px at 82% 18%, rgba(255,59,48,.20), rgba(255,59,48,0) 60%),
+        radial-gradient(140px 50px at 80% 18%, rgba(249,217,118,.14), rgba(249,217,118,0) 60%);
+      animation: neonFlicker 8s infinite steps(1);
+    }
+    /* Перекрашиваем неон под тему Jedi */
+    body.theme-jedi .cantina::after{
+      background:
+        radial-gradient(220px 90px at 82% 18%, rgba(34,211,238,.22), rgba(34,211,238,0) 60%),
+        radial-gradient(160px 60px at 80% 18%, rgba(96,165,250,.18), rgba(96,165,250,0) 60%);
+    }
+    @keyframes neonFlicker{0%, 97%, 100%{opacity:.85} 3%{opacity:.65} 6%{opacity:.9} 12%{opacity:.7} 20%{opacity:.88}}
+
+  /* Бластерные залпы (Star Wars): красные болты в случайном направлении */
+    .fx{position:fixed; inset:0; z-index:9999; pointer-events:none; overflow:hidden}
+    .boltWrap{position:absolute; left:0; top:0; transform-origin:0 50%; pointer-events:none}
+    .bolt{position:absolute; left:0; top:0; width:var(--len,340px); height:3px; border-radius:3px;
+      background:linear-gradient(90deg, rgba(255,59,48,0) 0%, #ffffff 8%, #ff3b30 25%, #ff3b30 75%, rgba(255,59,48,0) 100%);
+      box-shadow:0 0 10px rgba(255,59,48,.9), 0 0 18px rgba(255,59,48,.35);
+      filter:drop-shadow(0 0 10px rgba(255,59,48,.65));
+      animation:boltX 420ms ease-out forwards}
+    @keyframes boltX{0%{transform:translateX(0); opacity:1} 100%{transform:translateX(var(--len)); opacity:0}}
+    .flash{position:absolute; width:18px; height:18px; border-radius:50%; background:radial-gradient(circle, #fff 0%, #ff3b30 45%, rgba(255,59,48,0) 70%); filter:blur(.4px) drop-shadow(0 0 12px rgba(255,59,48,.85)); animation:muzzle 180ms ease-out forwards}
+    @keyframes muzzle{0%{opacity:1; transform:scale(.6)} 100%{opacity:0; transform:scale(1.8)}}
+
+  /* Поддержка inline-SVG в аватаре */
+    .avatar svg{position:absolute; inset:6px; width:calc(100% - 12px); height:calc(100% - 12px); display:block}

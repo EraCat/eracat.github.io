@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" href="background.png" as="image">
+    <title>Резюме — Александр Арапов</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cantina" aria-hidden="true"></div>
+
+<div class="container">
+    <div class="layout">
+        <!-- Липкий сайдбар -->
+        <aside class="sidebar" id="sidebar">
+            <div class="me">
+                <div class="avatar" id="avatar">
+                    <img id="avatarImg" src="stormtrooper.svg" alt="Аватар — штурмовик"
+                         onerror="this.closest('.avatar').classList.add('fallback');">
+                    <span class="initials">AA</span>
+                </div>
+                <div>
+                    <h1 class="name">Александр Арапов</h1>
+                    <div class="role">Java Developer</div>
+                </div>
+            </div>
+
+
+            <div class='icons'>
+                <a class='icon-btn' href='https://github.com/eracat' target='_blank' rel='noopener'
+                   aria-label='GitHub' title='GitHub'>
+                    <svg viewBox='0 0 24 24' aria-hidden='true'>
+                        <path fill='currentColor'
+                              d='M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58 0-.29-.01-1.06-.02-2.09-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.74.08-.74 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.22.7.83.58A12 12 0 0 0 12 .5z'/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+                <a class='icon-btn' href='https://t.me/eracat' target='_blank' rel='noopener' aria-label='Telegram'
+                   title='Telegram'>
+                    <svg viewBox='0 0 24 24' aria-hidden='true'>
+                        <path fill='currentColor'
+                              d='M3.4 10.2L20.5 3.1a1 1 0 011.3 1.3l-7.1 17.1a1 1 0 01-1.9-.1l-2-6.6-6.6-2a1 1 0 01-.1-1.9z'/>
+                    </svg>
+                    <span>Telegram</span>
+                </a>
+            </div>
+            <div class="audio" id="ambient" data-youtube-id="gfFqz3JAcPU">
+                <button id="audioBtn" class="btn" type="button" aria-pressed="false"
+                        aria-label="Включить фоновую музыку">
+                    ▶ Ambient <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                </button>
+                <div id="ytPlayer" aria-hidden="true"
+                     style="position:absolute;width:0;height:0;opacity:0;pointer-events:none"></div>
+                <audio id="sfxLaser" preload="auto">
+                    <source src="imperial-blaster.mp3" type="audio/mpeg"/>
+                </audio>
+        </aside>
+
+        <!-- Контент -->
+        <main id="content">
+            <section id="experience" aria-labelledby="h-exp">
+                <h2 id="h-exp">Опыт</h2>
+                <div class="timeline">
+                    <article class="item">
+                        <h3 class="company">Click.ru — Java Developer</h3>
+                        <div class="meta">2024</div>
+                        <ul class="list">
+                            <li>Архитектура сервиса генерации изображений</li>
+                            <li>Интеграции с LLM‑сервисами</li>
+                            <li>Настройка CI/CD: GitHub Actions, GCP.</li>
+                        </ul>
+                    </article>
+                    <article class="item">
+                        <h3 class="company">Deutsche Telekom — Ведущий разработчик</h3>
+                        <div class="meta">2020–2022</div>
+                        <ul class="list">
+                            <li>Разработка личного кабинета для пользователей телекома</li>
+                            <li>Выделение микросервисов из монолита</li>
+                            <li>Настройка CI/CD для новых сервисов: OpenShift, GitLab CI/CD</li>
+                        </ul>
+                    </article>
+                    <article class="item">
+                        <h3 class="company">Nexign — Старший инженер-программист</h3>
+                        <div class="meta">2018–2020</div>
+                        <ul class="list">
+                            <li>Добаботка биллинговой системы</li>
+                            <li>Покрытие и развитие автотестов, поддержка фреймворка</li>
+                            <li>Внедрение трейсинга и мониторинга</li>
+                        </ul>
+                    </article>
+                </div>
+            </section>
+
+            <section id="skills" aria-labelledby="h-skills">
+                <h2 id="h-skills">Ключевые навыки</h2>
+                <div class="skills hr">
+                    <span class="badge hot">Java</span>
+                    <span class="badge hot">Spring Boot</span>
+                    <span class="badge hot">Microservices</span>
+                    <span class="badge">PostgreSQL</span>
+                    <span class="badge">Docker</span>
+                    <span class="badge">Kubernetes / OpenShift</span>
+                    <span class="badge">CI/CD (GitHub Actions)</span>
+                    <span class="badge">Cloud: GCP / AWS</span>
+                </div>
+            </section>
+
+            <section id="education" aria-labelledby="h-ed">
+                <h2 id="h-ed">Образование</h2>
+                <p>СПбГУ Физический факультет</p>
+            </section>
+
+            <section id="languages" aria-labelledby="h-lang">
+                <h2 id="h-lang">Языки</h2>
+                <p>Русский — родной, Английский — B2</p>
+            </section>
+
+
+            <footer>© 2025</footer>
+        </main>
+    </div>
+</div>
+
+<button class="to-top" aria-label="Наверх" title="Наверх">↑</button>
+
+<script>
+
+
+    // Кнопка «Наверх»
+    (function () {
+        const btn = document.querySelector('.to-top');
+
+        function onScroll() {
+            btn.classList.toggle('show', window.scrollY > 480);
+        }
+
+        window.addEventListener('scroll', onScroll, {passive: true});
+        btn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+        onScroll();
+    })();
+
+    // Фоновая музыка / YouTube как источник (respect autoplay policy)
+    (function () {
+        const wrap = document.getElementById('ambient');
+        const btn = document.getElementById('audioBtn');
+        const audio = document.getElementById('ambientAudio');
+        if (!wrap || !btn) return;
+
+        const ytId = (wrap.dataset.youtubeId || '').trim();
+        let ytPlayer = null, ytReady = false, apiLoading = false;
+
+        function isYTPlaying() {
+            try {
+                return ytPlayer && ytReady && ytPlayer.getPlayerState && ytPlayer.getPlayerState() === 1;
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function isAudioPlaying() {
+            return audio && !audio.paused && !audio.ended;
+        }
+
+        function sync() {
+            const playing = isYTPlaying() || isAudioPlaying();
+            btn.classList.toggle('playing', playing);
+            btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+            if (btn.firstChild) btn.firstChild.nodeValue = playing ? '⏸ Ambient ' : '▶ Ambient ';
+        }
+
+        function ensureYT() {
+            return new Promise((resolve, reject) => {
+                if (!ytId) return reject('no-id');
+                if (ytPlayer && ytReady) return resolve(ytPlayer);
+                if (!apiLoading) {
+                    apiLoading = true;
+                    const s = document.createElement('script');
+                    s.src = 'https://www.youtube.com/iframe_api';
+                    document.head.appendChild(s);
+                }
+                window.onYouTubeIframeAPIReady = function () {
+                    ytPlayer = new YT.Player('ytPlayer', {
+                        videoId: ytId,
+                        playerVars: {
+                            autoplay: 1,
+                            loop: 1,
+                            playlist: ytId,
+                            controls: 0,
+                            rel: 0,
+                            playsinline: 1,
+                            modestbranding: 1
+                        },
+                        events: {
+                            onReady: () => {
+                                ytReady = true;
+                                try {
+                                    ytPlayer.mute && ytPlayer.mute();
+                                    ytPlayer.playVideo && ytPlayer.playVideo();
+                                } catch (_) {
+                                }
+                                sync();
+                            },
+                            onStateChange: (e) => {
+                                if (e && e.data === 0) {
+                                    try {
+                                        ytPlayer.playVideo();
+                                    } catch (_) {
+                                    }
+                                }
+                                sync();
+                            }
+                        }
+                    });
+                    resolve(ytPlayer);
+                };
+            });
+        }
+
+        btn.addEventListener('click', async () => {
+            try {
+                if (ytId) {
+                    await ensureYT();
+                    if (ytReady) {
+                        if (isYTPlaying()) ytPlayer.pauseVideo();
+                        else {
+                            ytPlayer.playVideo();
+                            ytPlayer.unMute && ytPlayer.unMute();
+                            ytPlayer.setVolume && ytPlayer.setVolume(75);
+                        }
+                    }
+                } else if (audio) {
+                    if (audio.paused) {
+                        await audio.play();
+                    } else {
+                        audio.pause();
+                    }
+                }
+            } catch (e) {
+                console.warn('Play failed:', e);
+                alert('Не удалось воспроизвести. Проверьте ID YouTube или файл ambient.mp3.');
+            } finally {
+                sync();
+            }
+        });
+
+        if (audio) {
+            audio.addEventListener('play', sync);
+            audio.addEventListener('pause', sync);
+            audio.addEventListener('ended', sync);
+            audio.addEventListener('error', () => {
+                console.error('Audio error');
+                btn.classList.remove('playing');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+        }
+
+        sync();
+
+        (async () => {
+            try {
+                if (ytId) {
+                    await ensureYT();
+                    if (ytReady) {
+                        ytPlayer.mute && ytPlayer.mute();
+                        ytPlayer.playVideo && ytPlayer.playVideo();
+                    }
+                } else if (audio) {
+                    audio.muted = true;
+                    await audio.play();
+                }
+            } catch (e) { /* Автоплей может быть заблокирован — просто показываем кнопку */
+            } finally {
+                sync();
+            }
+        })();
+
+        // Снимаем мьют на первом взаимодействии пользователя
+        function unlockAudio() {
+            try {
+                if (ytId && ytPlayer && ytReady) {
+                    ytPlayer.unMute && ytPlayer.unMute();
+                    ytPlayer.setVolume && ytPlayer.setVolume(75);
+                }
+                if (audio) {
+                    audio.muted = false;
+                    audio.volume = 0.75;
+                }
+            } catch (_) { /* noop */
+            }
+        }
+
+        window.addEventListener('pointerdown', unlockAudio, {once: true, passive: true});
+        window.addEventListener('keydown', unlockAudio, {once: true});
+
+    })();
+</script>
+
+<script>
+    // Бластер по клику (красные болты в случайных направлениях) + SFX
+    (function () {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const fx = document.createElement('div');
+        fx.className = 'fx';
+        fx.id = 'fx';
+        document.body.appendChild(fx);
+
+        const sfxTemplate = document.getElementById('sfxLaser');
+
+        function playSfx() {
+            if (!sfxTemplate) return;
+            try {
+                const n = sfxTemplate.cloneNode(true);
+                n.volume = 0.7;
+                document.body.appendChild(n);
+                const p = n.play();
+                if (p && p.catch) p.catch(() => {
+                });
+                n.addEventListener('ended', () => n.remove());
+                n.addEventListener('error', () => n.remove());
+            } catch (_) { /* noop */
+            }
+        }
+
+        function shoot(e) {
+            if (e.button !== 0) return;            // только ЛКМ
+            if (e.target.closest('a,button,input,textarea,select,label,.icon-btn,.btn')) return; // не мешаем UI
+
+            // SFX всегда по клику (жест пользователя гарантирован) — политика автоплея соблюдена
+            playSfx();
+
+            if (prefersReduced) return;            // визуальные эффекты уважают настройку
+
+            const x = e.clientX, y = e.clientY;
+            // Случайное направление (0..360°) и длина болта
+            const angle = Math.random() * 360;                     // deg
+            const len = Math.floor(220 + Math.random() * 360);     // 220–580px
+
+            const wrap = document.createElement('div');
+            wrap.className = 'boltWrap';
+            wrap.style.transform = `translate(${x}px, ${y}px) rotate(${angle}deg)`;
+
+            const bolt = document.createElement('div');
+            bolt.className = 'bolt';
+            bolt.style.setProperty('--len', len + 'px');
+            wrap.appendChild(bolt);
+
+            fx.appendChild(wrap);
+            if (fx.childElementCount > 24) fx.firstChild.remove();
+            bolt.addEventListener('animationend', () => wrap.remove());
+
+            const flash = document.createElement('div');
+            flash.className = 'flash';
+            flash.style.left = (x) + 'px';
+            flash.style.top = (y) + 'px';
+            fx.appendChild(flash);
+            setTimeout(() => flash.remove(), 220);
+        }
+
+        window.addEventListener('pointerdown', shoot);
+    })();
+</script>
+</body>
+</html>
